@@ -1,0 +1,56 @@
+<ng-container *ngIf="data$ | async as data">
+<strong>##{{data$ | async}}##</strong>
+<div class="auth-page">
+  
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Sign up</h1>
+        <p class="text-xs-center">
+            <a>Have an account?</a>
+        </p>
+        <mc-backend-error-messages 
+            *ngIf="data.backendErrors"
+            [backendErrors]="data.backendErrors"
+            ></mc-backend-error-messages>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                formControlName="username"
+                placeholder="Username"
+                type="text"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                formControlName="email"
+                placeholder="Email"
+                type="text"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                formControlName="password"
+                placeholder="Password"
+                type="password"
+              />
+            </fieldset>
+            <button
+              class="btn btn-lg btn-primary pull-xs-right"
+              type="submit"
+              [disabled]="data.isSubmitting"
+            >
+              Sign up
+            </button>
+          </fieldset>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</ng-container>
