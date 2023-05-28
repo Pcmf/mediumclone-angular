@@ -107,6 +107,7 @@ export const loginEffect = createEffect(
     {functional: true}
 )
 
+
 export const redirectAfterLoginEffect = createEffect(
     (actions$ = inject(Actions), router = inject(Router)) => {
         return actions$.pipe(
@@ -118,3 +119,23 @@ export const redirectAfterLoginEffect = createEffect(
     },
     {functional: true, dispatch: false}
 )
+
+
+// Logout
+// export const logoutEffect = createEffect(
+//     (
+//         actions$ = inject(Actions),
+//         persistenceService = inject(PersistenceService),
+//         router = inject(Router)
+//     ) => 
+//     {
+//         actions$.pipe(
+//             ofType(authActions.logoutSuccess),
+//             tap(() => {
+//                 persistenceService.delete('token');
+//                 router.navigateByUrl('/login');
+//             })
+//         );
+//         return null;
+//     }, {functional: true, dispatch: false}
+// )

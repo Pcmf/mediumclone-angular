@@ -1,5 +1,5 @@
 <ng-container *ngIf="data$ | async as data">
-    <nav class="navbar navbar-light navbar-fixed-top">
+    <nav class="navbar navbar-light">
         <div class="container">
             <a class="navbar-brand" routerLink="/">MediumClone</a>
             <ul class="nav navbar-nav pull-xs-right">
@@ -23,6 +23,11 @@
                             &nbsp; {{data.currentUser.username}}    
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a routerLink="/login" class="nav-link" (click)="logOut()">
+                            <i class="ion-log-out"></i>&nbsp; Logout    
+                        </a>
+                    </li>                  
                 </ng-container>
                 <ng-container *ngIf="data.currentUser === null">
                     <li class="nav-item">

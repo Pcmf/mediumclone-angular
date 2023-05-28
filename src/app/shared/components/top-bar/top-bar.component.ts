@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
+import { authActions } from 'src/app/auth/store/actions';
 import { selectCurrentUser } from 'src/app/auth/store/reducers';
 
 @Component({
@@ -18,4 +19,8 @@ import { selectCurrentUser } from 'src/app/auth/store/reducers';
     })
 
     constructor(private store: Store) {}
+
+    logOut() {
+      this.store.dispatch(authActions.logout());
+    }
 }

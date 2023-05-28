@@ -48,6 +48,18 @@ const authFeature = createFeature({
             isSubmitting: false,
             validationErrors: action.errors,
         })),
+        
+        // Logout
+        on(authActions.logout, (state) => ({
+            ...state, 
+            isSubmitting: false,
+        })),
+        on(authActions.logoutSuccess, (state) => ({
+            ...state, 
+            isSubmitting: false,
+            currentUser: null,
+        })),
+
         //get current user
         on(authActions.getCurrentUser, (state) => ({
             ...state, 
@@ -63,6 +75,8 @@ const authFeature = createFeature({
             isLoading: false,
             currentUser: null, 
         })),
+
+
     )
 })
 

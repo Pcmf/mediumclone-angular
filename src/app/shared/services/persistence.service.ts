@@ -21,4 +21,14 @@ export class PersistenceService {
             return null;
         }
    }
+
+   delete(key: string): void {
+    try {
+        localStorage.removeItem(key);
+        return null;
+    } catch (error) {
+        console.log('Error removing from local storage', error);
+        return null;
+    }
+   }
 }
