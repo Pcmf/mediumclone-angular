@@ -21,6 +21,7 @@ import { selectCurrentUser } from 'src/app/auth/store/reducers';
     constructor(private store: Store) {}
 
     logOut() {
+      console.log('cliked');
       this.store.dispatch(authActions.logout());
     }
 }

@@ -122,20 +122,37 @@ export const redirectAfterLoginEffect = createEffect(
 
 
 // Logout
-// export const logoutEffect = createEffect(
-//     (
-//         actions$ = inject(Actions),
-//         persistenceService = inject(PersistenceService),
-//         router = inject(Router)
-//     ) => 
-//     {
-//         actions$.pipe(
-//             ofType(authActions.logoutSuccess),
-//             tap(() => {
-//                 persistenceService.delete('token');
-//                 router.navigateByUrl('/login');
-//             })
-//         );
-//         return null;
-//     }, {functional: true, dispatch: false}
-// )
+export const logoutEffect = createEffect(
+    (
+        actions$ = inject(Actions), 
+        persistenceService = inject(PersistenceService),
+        router = inject(Router),
+    ) => { 
+    
+        return actions$.pipe(
+            ofType(authActions.logout),
+            tap(() => {
+                console.log('Log out');
+                persistenceService.delete('token');
+                router.navigateByUrl('/login');
+                return null;
+            })
+        )
+    },
+    {functional: true, dispatch: false}
+)
+
+/* export const redirectAfterLogoutEffect = createEffect(
+    (actions$ = inject(Actions), router = inject(Router), persistenceService = inject(PersistenceService),) => {
+        return actions$.pipe(
+            ofType(authActions.logoutSuccess),
+            tap(() => {
+                console.log('After logout');
+                persistenceService.delete('token');
+                
+            })
+        )
+    },
+    {functional: true, dispatch: false}
+) */
+
