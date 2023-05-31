@@ -11,6 +11,8 @@ import { provideEffects } from '@ngrx/effects';
 import * as authEffects from './app/auth/store/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { authInterceptor } from './app/shared/services/authInterceptor';
+import { feedFeatureKey, feedReducer } from './app/shared/components/feed/store/reducers';
+import * as feedEffects from './app/shared/components/feed/store/effects';
 
 
 bootstrapApplication(AppComponent, {
@@ -21,9 +23,10 @@ bootstrapApplication(AppComponent, {
       router: routerReducer
     }),
     provideRouterStore(),
-    provideState(authFeatureKey, authReducer),
+    provideState(authFeatureKey, authReducer,),
+    provideState(feedFeatureKey, feedReducer),
     provideEffects(
-      authEffects,
+      authEffects, feedEffects,
     ),
     provideStoreDevtools({
       maxAge: 25,
