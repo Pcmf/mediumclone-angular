@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { feedActions } from "./store/actions";
 import { combineLatest } from "rxjs";
@@ -10,6 +10,7 @@ import { IsLoadingComponent } from "../is-loading/is-loading.component";
 import { environment } from "src/environments/environment.development";
 import { PaginationComponent } from "../pagination/pagination.component";
 import queryString from "query-string";
+import { TagListComponent } from "../tagList/tagList.component";
 
 @Component({
     selector: 'mc-feed',
@@ -21,9 +22,10 @@ import queryString from "query-string";
         ErrorMessageComponent, 
         IsLoadingComponent,
         PaginationComponent,
+        TagListComponent
     ]
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnChanges {
     @Input() apiUrl:string;
     limit = environment.limit;
     baseUrl = this.router.url.split('?')[0];
@@ -49,6 +51,16 @@ export class FeedComponent implements OnInit {
             this.fetchFeed();
         })
     }
+    
+    ngOnChanges(changes: SimpleChanges) {
+       const isApiUrlChanged = !changes['apiUrl'].firstChange 
+        && changes['apiUrl'].currentValue !== changes['apiUrl'].previousValue; 
+
+        if(isApiUrlChanged) {
+            this.fetchFeed();
+        }
+    }
+
 
     fetchFeed(): void{
         const offset = this.currentPage * this.limit - this.limit;

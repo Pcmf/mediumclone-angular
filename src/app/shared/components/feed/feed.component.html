@@ -14,13 +14,15 @@
                     </a>                    
                     <span class="date">{{ article.createdAt}}</span>
                 </div>
-                <div class="pull-xs-right">ADD TO FAVORITE</div>
+                <div class="pull-xs-right">
+                    ADD TO FAVORITE
+                </div>
             </div>
             <a [routerLink]="['/articles', article.slug]" class="preview-link">
                 <h1>{{ article.title }}</h1>
                 <p>{{ article.description }}</p>
                 <span>Read more...</span>
-                TAG LIST
+                <mc-tag-list [tags]=" article.tagList"></mc-tag-list>
             </a>
         </div>
         <mc-pagination 
