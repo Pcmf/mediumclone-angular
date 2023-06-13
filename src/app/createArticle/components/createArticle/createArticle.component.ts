@@ -3,7 +3,7 @@ import { ArticleFormComponent } from "../../../shared/components/articleForm/art
 import { ArticleFormValuesInterface } from "src/app/shared/components/articleForm/types/articleFormValues.interface";
 import { CommonModule } from "@angular/common";
 import { Store } from "@ngrx/store";
-import { selectIsSubmiting, selectValidationErrors } from "../../store/reducers";
+import { selectIsSubmitting, selectValidationErrors } from "../../store/reducers";
 import { combineLatest } from "rxjs";
 import { createArticleActions } from "../../store/actions";
 import { ArticleRequestInterface } from "src/app/shared/types/articleRequest.interface";
@@ -27,7 +27,7 @@ export class CreateArticleComponent{
 
 
     data$ = combineLatest({
-        isSubmiting: this.store.select(selectIsSubmiting),
+        isSubmitting: this.store.select(selectIsSubmitting),
         backendErrors: this.store.select(selectValidationErrors),
     })
 
